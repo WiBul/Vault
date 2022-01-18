@@ -1,0 +1,153 @@
+* {
+    box-sizing: border-box;
+    font-family: "Century Gothic", "Century","Arial", sans-serif;
+}
+.flexBasis {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-container {
+ /*   display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: flex-start;*/
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+fieldset {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px;
+    padding: 30px;
+}
+
+fieldset input {
+    outline: none;
+    max-width: 149px;
+    margin: 30px;
+    border-style: solid;
+    border-color: lightgrey;
+}
+
+#wachtwoord {
+    margin: 0 auto;
+    border: none;
+    background-color: transparent;
+}
+
+#passwordDiv {
+    border-color: lightgrey;
+    display: flex;
+    margin: 30px;
+    border-style: solid;
+
+
+}
+#toonWachtwoord {
+    border-color: transparent;
+    margin: 0 auto;
+    background: transparent url("../assets/images/oogDoorzichtig.png") no-repeat right center;
+    background-size: contain;
+    background-origin: content-box;
+
+}
+#toonWachtwoord:hover {
+    background: transparent url("../assets/images/oogDoorzichtigDicht.png") no-repeat right center;
+    background-size: contain;
+    background-origin: content-box;
+}
+
+fieldset input:hover, #passwordDiv:hover{
+    background-color: aliceblue;
+    color: darkgray;
+}
+
+fieldset input:focus:not(#wachtwoord){
+    background-color: aliceblue;
+    color: darkorchid;
+    font-weight: bold;
+    border-color: blue;
+}
+#passwordDiv:focus {
+    background-color: aliceblue;
+}
+#wachtwoord{
+    background-color: transparent;
+    /*noodzakelijk om div goede focus te geven*/
+    outline: none;
+}
+
+
+.header {
+    text-align: center;
+    margin: 10px;
+    background-color: aliceblue;
+    border-left-style: solid;
+    border-left-color: darkorchid;
+    border-left-width: 50px;
+    border-right-style: solid;
+    border-right-color: darkorchid;
+    border-right-width: 50px;
+}
+
+input:placeholder-shown {
+    font-style: italic;
+}
+
+.header h1 {
+    font-size: 40px;
+    color: darkorchid;
+    margin: 0px;
+}
+
+.header h2 {
+    font-size: 25px;
+    color: white;
+    text-shadow: 2px 2px 10px darkorchid;
+    margin: 0px;
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.button {
+    text-align: center;
+    margin: 10px;
+    padding: 20px;
+    font-size: medium;
+    background-color: darkorchid;
+    color: aliceblue;
+}
+
+.button:hover {
+    background-color: aliceblue;
+    color: darkorchid;
+}
+
+.button:focus {
+    background-color: aliceblue;
+    color: darkorchid;
+    font-size: large;
+    font-weight: bold;
+}
+
+.label {
+    border-style: hidden;
+    text-decoration: underline;
+}
+
+input:placeholder-shown {
+    font-style: italic;
+}
+
+.flex-container#portefeuille {
+    flex-direction: row;
+}
+.registratie-personalia {
+    display: flex;
+    flex-direction: column;
+}

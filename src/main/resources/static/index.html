@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to The Vault</title>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/registrationModal.css">
+    <script src="javascript/homepage.js" defer></script>
+    <script src="javascript/buildPage.js" defer></script>
+    <script src="javascript/validation.js" defer></script>
+    <script src="javascript/dashboardInfo.js" defer></script>
+    <link rel="stylesheet" href="css/cryptoGrafiekDropDown.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js" defer></script>
+    <script src="javascript/cryptoGrafiek.js" defer></script>
+    <script src="javascript/cryptoGrafiekDropDown.js" defer></script>
+
+           <link rel = "icon" href = "http://localhost:63342/vault/src/main/resources/Sprint2/favicon.ico" type="image/x-icon"/>
+</head>
+<!--Het inlogform is onzichtbaar bij het laden van de website, het registreerdform is bereikbaar via een knop-->
+<body onload="loginScreen()">
+
+<!-- TODO Kan de DOM kleiner? Dat maakt de website sneller. Dan moeten we meer JavaScript gebruiken om de elementen te vullen-->
+
+<div class="header" name="header" id="header">
+    <p><h1> The Vault</h1></p>
+    <p><h2> Bank to the Future </h2></p>
+</div>
+
+<div class="flex-container">
+
+<div class="registratie-personalia" id="registratie-personalia">
+
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header" id = "modalHeader">
+                <span class="close">&times;</span>
+                <h2 id = "modalText" >Kloppen alle gegevens?</h2>
+            </div>
+            <div id = "modalBody" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <input class="button" type="button" id ="verstuur" value="Join the Vault" onclick="registreer()">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="inlog" id="inlog" name="inlogscherm">
+        <form name="inlogform" id="inlogform" method="post">
+            <fieldset>
+                <legend>Inloggegevens</legend>
+                <p><label for="gebruikersnaamInlog" class="onderdeel-inlog label">gebruikersnaam</label></p>
+                <p><input type="text" id="gebruikersnaamInlog" name="gebruikersnaam" placeholder="gebruikersnaam"
+                          class="onderdeel-inlog invoerveld" required autofocus></p>
+                <p><label for="wachtwoordInlog" class="onderdeel-inlog label">wachtwoord</label></p>
+                <p><input type="password" id="wachtwoordInlog" name="wachtwoord" placeholder="wachtwoord"
+                          class="onderdeel-inlog invoerveld"required></p>
+                <p><input class="button" type="button" id = "loginbutton" value = "Log in" onclick="login()"></p>
+            </fieldset>
+            <p><input class="button" type="button" id = "nieuweklantbutton" value = "Ik wil klant worden" onclick="registreerScreen()"></p>
+        </form>
+    </div>
+
+    <div class="dashboard" id="dashboard">
+        <!-- Hier ergens komt de cryptoGrafiek -->
+        <div id = "cryptoGrafiek">
+            <input id = "laatsteWeek" type = "button" class = "button" value = "Laatste week">
+            <input id = "laatsteMaand" type = "button" class = "button" value = "Laatste 30 dagen">
+            <input id = "laatsteDrieMaanden" type = "button" class = "button" value = "Laatste 90 dagen">
+            <div id="myPlot" style="width:100%;max-width:700px"></div>
+            <div class="dropdown">
+                <button onclick="myFunction()" class="button">Kies je cryptomunt</button>
+                <div id="cryptoDropdown" class="dropdown-content">
+                    <input type="text" placeholder="Search.." id="cryptoZoekveld" onkeyup="filterFunction()">
+
+                </div>
+            </div>
+        </div>
+        <form id = cryptoGegevens>
+            <fieldset class="flex-container" id="portefeuille">
+                <legend>Portefeuille</legend>
+                <div id ="cryptoNaam" class = "row"><label class = "col"></label></div>
+                <div id = "cryptoAantal" class = "row"><label class = "col"></label></div>
+                <div id = "cryptoKoers" class= "row"><label class="col"></label> </div>
+                <div id = "cryptoTransactie" class="row"> <label class="col"></label> </div>
+            </fieldset>
+        </form>
+
+        <div class="rekening" id="rekening" name="rekeningWeergave">
+            <fieldset class="fieldsetRekening" id="fieldsetRekening">
+                <legend>Rekening</legend>
+                <div><label for="iban"></label></div>
+                    <div id="iban"></div>
+                <div><label for="saldo"></label></div>
+                    <div id="saldo"></div>
+            </fieldset>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

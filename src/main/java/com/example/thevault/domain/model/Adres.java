@@ -3,16 +3,22 @@
 
 package com.example.thevault.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
+
 public class Adres {
+    private int adresId;
+    private static int DEFAULT_ADRES_ID = 0;
     private String straatnaam;
     private String toevoeging;
     private int huisnummer;
     private String postcode;
     private String plaatsnaam;
 
+    @JsonIgnore
     private final Logger logger = LoggerFactory.getLogger(Adres.class);
 
     public Adres(){
@@ -22,6 +28,7 @@ public class Adres {
 
     public Adres(String straatnaam, int huisnummer, String toevoeging, String postcode, String plaatsnaam) {
         super();
+        this.adresId = DEFAULT_ADRES_ID;
         logger.info("New Adres");
         this.straatnaam = straatnaam;
         this.huisnummer = huisnummer;
@@ -33,12 +40,21 @@ public class Adres {
     @Override
     public String toString() {
         return "Adres{" +
+                "adresId='" + adresId + '\'' +
                 "straatnaam='" + straatnaam + '\'' +
                 ", toevoeging='" + toevoeging + '\'' +
                 ", huisnummer=" + huisnummer +
                 ", postcode='" + postcode + '\'' +
                 ", plaatsnaam='" + plaatsnaam + '\'' +
                 '}';
+    }
+
+    public int getAdresId() {
+        return adresId;
+    }
+
+    public void setAdresId(int adresId) {
+        this.adresId = adresId;
     }
 
     public String getStraatnaam() {
@@ -81,7 +97,16 @@ public class Adres {
         this.plaatsnaam = plaatsnaam;
     }
 
-    public Logger getLogger() {
-        return logger;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Adres adres = (Adres) o;
+        return huisnummer == adres.huisnummer && Objects.equals(toevoeging, adres.toevoeging) && postcode.equals(adres.postcode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(straatnaam, toevoeging, huisnummer, postcode, plaatsnaam);
     }
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="css/cryptoGrafiekDropDown.css">
+<script src="https://cdn.plot.ly/plotly-latest.min.js" defer></script>
+<script src="javascript/cryptoGrafiek.js" defer></script>
+<script src="javascript/cryptoGrafiekDropDown.js" defer></script>
+
+<body>
+<div id = "cryptoGrafiek">
+<input id = "muntkiezer" type="text">
+<button id = "muntButton" type="button">klik voor de grafiek</button>
+<div id = "laatsteWeek" >Laatste week</div>
+<div id = "laatsteMaand">Laatste 30 dagen</div>
+<div id="myPlot" style="width:100%;max-width:700px"></div>
+
+<p>Click on the button to open the dropdown menu, and use the input field to search for a specific dropdown link.</p>
+
+<div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+    <div id="cryptoDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search.." id="cryptoZoekveld" onkeyup="filterFunction()">
+
+    </div>
+</div>
+</div>
+
+
+</body>
+</html>

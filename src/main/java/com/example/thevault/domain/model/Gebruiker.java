@@ -3,16 +3,23 @@
 
 package com.example.thevault.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-abstract class Gebruiker {
-    private int gebruikerID;
-    private String gebruikersnaam;
-    private String wachtwoord;
-    private Portefeuille portefeuille;
-    private Rekening rekening;
+import java.util.List;
+import java.util.Objects;
 
+public abstract class Gebruiker {
+    protected int gebruikerId;
+    protected String gebruikersnaam;
+    protected String wachtwoord;
+    protected Rekening rekening;
+    protected List<Asset> portefeuille;
+    protected List<Transactie> transacties;
+    protected static int DEFAULT_GEBRUIKERID = 0;
+
+    @JsonIgnore
     private final Logger logger = LoggerFactory.getLogger(Gebruiker.class);
 
     public Gebruiker() {
@@ -20,37 +27,32 @@ abstract class Gebruiker {
         logger.info("Lege Gebruiker, no args constructor");
     }
 
-    public Gebruiker(Portefeuille portefeuille, Rekening rekening){
-        super();
-        this.portefeuille = portefeuille;
-        this.rekening = rekening;
-        logger.info("Lege gebruiker met rekening en portefeuille");
-    }
 
-    public Gebruiker(int gebruikerID, String gebruikersnaam, String wachtwoord){
-        this(new Portefeuille(), new Rekening());
-        this.gebruikerID = gebruikerID;
+    public Gebruiker(String gebruikersnaam, String wachtwoord,  Rekening rekening,List<Asset> portefeuille,
+                     List<Transactie> transacties){
+        this.gebruikerId = DEFAULT_GEBRUIKERID;
         this.gebruikersnaam = gebruikersnaam;
         this.wachtwoord = wachtwoord;
-        logger.info("Gebruiker" + this + "aangemaakt");
+        this.rekening = null;
+        this.portefeuille = null;
+        this.transacties = null;
+        logger.info("Gebruiker " + this + "aangemaakt");
     }
 
     @Override
     public String toString() {
         return "Gebruiker{" +
-                "gebruikerID=" + gebruikerID +
+                "gebruikerId=" + gebruikerId +
                 ", gebruikersnaam='" + gebruikersnaam + '\'' +
-                ", portefeuille=" + portefeuille +
-                ", rekening=" + rekening +
                 '}';
     }
 
-    public int getGebruikerID() {
-        return gebruikerID;
+    public int getGebruikerId() {
+        return gebruikerId;
     }
 
-    public void setGebruikerID(int gebruikerID) {
-        this.gebruikerID = gebruikerID;
+    public void setGebruikerId(int gebruikerId) {
+        this.gebruikerId = gebruikerId;
     }
 
     public String getGebruikersnaam() {
@@ -69,14 +71,6 @@ abstract class Gebruiker {
         this.wachtwoord = wachtwoord;
     }
 
-    public Portefeuille getPortefeuille() {
-        return portefeuille;
-    }
-
-    public void setPortefeuille(Portefeuille portefeuille) {
-        this.portefeuille = portefeuille;
-    }
-
     public Rekening getRekening() {
         return rekening;
     }
@@ -85,7 +79,32 @@ abstract class Gebruiker {
         this.rekening = rekening;
     }
 
-    public Logger getLogger() {
-        return logger;
+    public List<Asset> getPortefeuille() {
+        return portefeuille;
+    }
+
+    public void setPortefeuille(List<Asset> portefeuille) {
+        this.portefeuille = portefeuille;
+    }
+
+    public List<Transactie> getTransacties() {
+        return transacties;
+    }
+
+    public void setTransacties(List<Transactie> transacties) {
+        this.transacties = transacties;
+    }
+
+    @Override // TODO juiste equals?
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Gebruiker)) return false;
+        Gebruiker gebruiker = (Gebruiker) o;
+        return gebruikersnaam.equals(gebruiker.gebruikersnaam) && wachtwoord.equals(gebruiker.wachtwoord);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gebruikerId, gebruikersnaam, wachtwoord);
     }
 }

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>126</x>
+      <y>927</y>
+      <w>441</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>lw=2
+model :: CryptoMunt
+--
+- Id: int
+- name: String
+- symbol: String
+- price: double
+- logger: Logger
+
+--
++ Cryptomunt()
++ Cryptomunt(cryptomuntId: int, name: String, afkorting: String, price: double)
++ toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>279</x>
+      <y>846</y>
+      <w>45</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=0..n
+m1=1</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>126</x>
+      <y>657</y>
+      <w>441</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lw=2
+model :: Asset
+--
+- cryptomunt: Cryptomunt
+- aantal: double
+- klant: Klant
+- datum: LocalDateTime
+- logger: Logger
+
+--
++ Asset()
++ Asset(cryptomunt: Cryptomunt, aantal: double)
++ equals(o: Object): boolean
++ hashCode(): int
++ toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>126</x>
+      <y>207</y>
+      <w>441</w>
+      <h>324</h>
+    </coordinates>
+    <panel_attributes>lw=2
+dao :: JDBCAssetDAO
+--
+- logger: Logger
+- jdbcTemplate: JdbcTemplate
+
+--
+
+{innerclass
+AssetRowMapper implements rowMapper&lt;Asset&gt;
+--
++ mapRow(resultSet: ResultSet, rowNum: int): Asset
+
+innerclass}
+
++ JDBCAssetDAO(jdbcTemplate: JdbcTemplate)
+- slaAssetOpStatement(asset: Asset, connection: Connection): 
+PreparedStatement
+- verwijderAssetStatement(asset: Asset, connection: Connection): 
+PreparedStatement
++ voegNieuwAssetToeAanPortefeuille(asset: Asset): Asset
++ verwijderAssetUitPortefeuille(asset: Asset): Asset
++ updateAsset(asset: Asset): Asset
++ geefAsset(klant: Klant, cryptomunt: Cryptomunt): Asset
++ geefAlleAssets(klant: Klant): List&lt;Asset&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>126</x>
+      <y>0</y>
+      <w>441</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lw=2
+&lt;&lt;Interface&gt;&gt;
+/dao :: AssetDAO/
+--
+/+ voegNieuwAssetToeAanPortefeuille(asset: Asset): Asset/
+/+ verwijderAssetUitPortefeuille(asset: Asset): Asset/
+/+ updateAsset(asset: Asset): Asset/
+/+ geefAsset(klant: Klant, cryptomunt: Cryptomunt): Asset/
+/+ geefAlleAssets(klant: Klant): List&lt;Asset&gt;/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>126</y>
+      <w>27</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>243</y>
+      <w>423</w>
+      <h>315</h>
+    </coordinates>
+    <panel_attributes>lw=2
+repository :: RootRepository
+--
+- logger: Logger
+- klantDAO: KlantDAO
+- rekeningDAO: RekeningDAO
+- assetDAO: AssetDAO
+- cryptomuntDAO: CryptomuntDAO
+
+--
++ RootRepository(klantDAO: KlantDAO, rekeningDAO: RekeningDAO, 
+assetDAO: AssetDAO, cryptomuntDAO: CryptomuntDAO)
++ slaKlantOp(klant: Klant): Klant
++ vindKlantByGebruikersnaam(gebruikersname: String): Klant
++ vindKlantById(gebruikerId: int): Klant
++ slaRekeningOp(rekening: Rekening): Rekening
++ vindRekeningVanKlant(klant: Klant): Rekening
++ vraagSaldoOpVanKlant(klant: Klant): double
++ wijzigSaldoVanKlant(klant: Klant, bedrag: double): Rekening
++ vulPortefeuilleKlant(klant: Klant): List&lt;Asset&gt;
++ geefAssetVanKlant(klant: Klant, cryptomunt: Cryptomunt): Asset
++ slaAssetVanKlantOp(klant: Klant, asset: Asset): Asset
++ wijzigAssetVanKlant(asset: Asset): Asset</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>558</x>
+      <y>387</y>
+      <w>180</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>288</x>
+      <y>522</y>
+      <w>27</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>900</y>
+      <w>423</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lw=2
+transfer :: AssetDto
+--
+- logger: Logger
+- name: String
+- price: double
+- aantal: double
+
+--
++ AssetDto()
++ AssetDto(asset: Asset)
++ toString(): String
++ equals(o: Object): boolean
++ hashCode(): int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>648</y>
+      <w>423</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lw=2
+service :: AssetService
+--
+- rootRepository: RootRepository
+- logger: Logger
+
+--
++ AssetService(rootRepository: RootRepository)
++ geefCryptomunt(klant: Klant, cryptomunt: Cryptomunt): AssetDto
++ slaAssetOp(klant: Klant, asset: Asset): Asset
++ wijzigAsset(asset: Asset): Asset</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>936</x>
+      <y>549</y>
+      <w>27</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>945</x>
+      <y>783</y>
+      <w>27</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>801</x>
+      <y>27</y>
+      <w>135</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Author: Carmen
+
+Torentje Asset 
+begin sprint 2</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

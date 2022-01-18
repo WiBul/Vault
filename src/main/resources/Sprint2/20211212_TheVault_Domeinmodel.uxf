@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>297</x>
+      <y>432</y>
+      <w>117</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lw=2
+CryptoMunt
+--
+Id
+name
+symbol
+price
+date</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>351</y>
+      <w>81</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=0..n
+m1=1
+bestaat uit</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>144</x>
+      <y>288</y>
+      <w>171</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=0..n
+m1=0..n
+bezit</panel_attributes>
+    <additional_attributes>170.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>297</x>
+      <y>270</y>
+      <w>117</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lw=2
+Asset
+--
+cryptomunt
+aantal
+klant
+datum</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>36</x>
+      <y>432</y>
+      <w>117</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lw=2
+Rekening
+--
+iban
+saldo
+klant
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>81</x>
+      <y>351</y>
+      <w>63</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=1
+m1=1..n
+is van</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>81</x>
+      <y>153</y>
+      <w>81</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=1..n
+m1=1
+woont op</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>36</x>
+      <y>36</y>
+      <w>117</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lw=2
+Adres
+--
+straatnaam
+huisnummer
+toevoeging
+postcode
+plaatsnaam
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>144</x>
+      <y>108</y>
+      <w>216</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>220.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>36</x>
+      <y>234</y>
+      <w>117</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lw=2
+Klant
+--
+naam
+geboortedatum
+adres
+BSN
+rekening
+portefeuille
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>342</x>
+      <y>108</y>
+      <w>27</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>297</x>
+      <y>36</y>
+      <w>117</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>lw=2
+/Gebruiker/
+--
+gebruikerId
+gebruikersNaam
+wachtwoord
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>297</x>
+      <y>180</y>
+      <w>117</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lw=2
+Bank
+--
+banknaam
+bankcode
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>603</x>
+      <y>36</y>
+      <w>126</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Author: Carmen
+
+Domeinmodel begin
+sprint 2</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
